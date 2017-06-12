@@ -15,6 +15,7 @@ class TaskController extends Controller
     public function index()
     {
         return Task::all();
+        return Task::paginate();
     }
 
     /**
@@ -35,7 +36,10 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $task = new Task($request->all());
+        $task->save();
+
+        return $task;
     }
 
     /**
@@ -69,7 +73,11 @@ class TaskController extends Controller
      */
     public function update(Request $request, Task $task)
     {
-        //
+        dd($request->all());
+        $task->fill($request->all());
+        $task->save();
+
+        return $task;
     }
 
     /**
@@ -80,6 +88,8 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {
-        //
+        $task->destroy();
+        $task->save();
+        return $task;
     }
 }
