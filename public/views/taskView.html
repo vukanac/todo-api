@@ -1,11 +1,38 @@
 <div class="col-sm-6 col-sm-offset-3">
     <div class="well">
         <h3>tasks</h3>
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Add new task.." ng-model="task.task">
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button" ng-click="task.addTask()">Add!</button>
+            </span>
+        </div><!-- /input-group -->
         <button class="btn btn-primary" style="margin-bottom: 10px" ng-click="task.getTasks()">Get tasks!</button>
         <ul class="list-group" ng-if="task.tasks">
             <li class="list-group-item" ng-repeat="task in task.tasks">
                 <h4>{{task.title}}</h4>
-                <h5>{{task.completed}}</h5>
+                <span ng-hide="editEnabled">
+                    {{task.task}}
+                    <a href="#" ng-click="editEnabled=!editEnabled">
+                        <span class="glyphicon glyphicon-pencil" ></span>
+                    </a>
+                </span>
+                <span ng-show="editEnabled">
+                    <input ng-model="task.task">
+                    <a href="#" ng-click="editEnabled=!editEnabled; task.updateTask(task)">
+                        <span class="glyphicon glyphicon-ok" ></span>
+                    </a>
+                </span>
+                <!-- <h4>{{task.task}}</h4> -->
+                <span style="cursor: pointer;" class="glyphicon glyphicon-trash" ng-click="task.deleteTask($index, task.task_id)"></span>
+
+                <div calss="alert alert-primary">
+                    <span class="glyphicon glyphicon-ok" ng-if="task.completed"></span>
+                </div>
+
+                <h5>{{task.submitted_by}}</h5>
+
+
             </li>
         </ul>
         <div class="alert alert-danger" ng-if="task.error">

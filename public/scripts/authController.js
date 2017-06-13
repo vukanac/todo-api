@@ -21,7 +21,7 @@
             $auth.login(credentials).then(function(response) {
                 console.log(response);
                 // If login is successful, redirect to the users state
-                $state.go('tasks');
+                $state.go('users');
             }).catch(function onError(response) {
                 // Handle error
                 // console.log(response);
