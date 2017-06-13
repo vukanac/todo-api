@@ -1,0 +1,16 @@
+<div class="col-sm-6 col-sm-offset-3">
+    <div class="well">
+        <h3>tasks</h3>
+        <button class="btn btn-primary" style="margin-bottom: 10px" ng-click="task.getTasks()">Get tasks!</button>
+        <ul class="list-group" ng-if="task.tasks">
+            <li class="list-group-item" ng-repeat="task in task.tasks">
+                <h4>{{task.title}}</h4>
+                <h5>{{task.completed}}</h5>
+            </li>
+        </ul>
+        <div class="alert alert-danger" ng-if="task.error">
+            <strong>There was an error: </strong> {{task.error.error}}
+            <br>Please go back and login again
+        </div>
+    </div>
+</div>
