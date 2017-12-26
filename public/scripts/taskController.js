@@ -9,12 +9,10 @@
     function TaskController($http) {
 
         var vm = this;
-
         vm.tasks;
         vm.error;
 
         vm.getTasks = function() {
-
             // This request will hit the index method in the AuthenticateController
             // on the Laravel side and will return the list of users
             $http.get('api/tasks').then(function (response) {
@@ -39,7 +37,6 @@
         }
 
         vm.addTask = function() {
-
             $http.post('api/tasks', {
                 body: vm.task,
                 user_id: $rootScope.currentUser.id
@@ -68,7 +65,6 @@
             });
         };
 
-
         vm.deleteTask = function (index, taskId) {
             console.log(index, taskId);
             $http
@@ -77,11 +73,7 @@
                     vm.tasks.splice(index, 1);
                 });
         };
-
-
         vm.getTasks();
-
-
     }
 
 })();
